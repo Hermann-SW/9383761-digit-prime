@@ -28,4 +28,4 @@ Instead the big computation is split into 1000s smaller jobs of x squarings (mod
 
 |in the dark|with flash|
 |-----------|----------|
-|![in the dark](20230717_214249.part.10%.jpg)|![with flash](20230717_214236.part.10%.jpg)|
+|![in the dark](20230717_214249.part.10%25.jpg)|![with flash](20230717_214236.part.10%25.jpg)|
