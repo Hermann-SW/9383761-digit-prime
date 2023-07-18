@@ -35,7 +35,7 @@ I did compute upper bound of 74.13 days for computing "sqrt(-1) (mod p)" for the
 
 For 70+ days sequential computation I decided not to use the UPS that I recently bought. It is able to continue PC operation with single thread running for 17:58min. But we have really seldom power outages here in Germany. Interestingly parts of my town had one recently (7/17/2023). We had no mains power for more than 2 hours, so the UPS I have would not have helped.
 
-Instead the big computation is split into 1000s smaller jobs of x squarings (mod p), and final small exponentiation. Each job will store its result. Bios "Restore on AC/Power Loss" is set to "Power ON", and crontab "@reboot" will continue computation where it was interrupted, if such an interrupt will happen at all (if I will need to do an important other computation on that PC, I might kill the long computation, do whatever is needed, and finally "sudo reboot 0" will continue the big computation).
+Instead the big computation is split into y smaller jobs of x squarings (mod p) [with y\*x == 31,172,163], and final small exponentiation. Each job will store its result. Bios "Restore on AC/Power Loss" is set to "Power ON", and crontab "@reboot" will continue computation where it was interrupted, if such an interrupt will happen at all (if I will need to do an important other computation on that PC, I might kill the long computation, do whatever is needed, and finally "sudo reboot 0" will continue the big computation).
 
 |in the dark|with flash|
 |-----------|----------|
