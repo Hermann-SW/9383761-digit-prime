@@ -19,7 +19,7 @@ https://github.com/Hermann-SW/7600X
 
 ## "sqrt(-1) (mod p)" for 9,383,761-digit prime p
 
-Rank 9 of [THE LARGEST KNOWN PRIMES](https://t5k.org/primes/lists/all.txt) list is 9,383,761 decimal digit number p=10223\*2^31172165+1. It is the largest known prime "=1 (mod 4)". For such primes there exists "sqrt(-1) (mod p)", which is what the PC will compute. It does so by computing "3^((p-1)/4) (mod p)", normally with just libgmpxx function call "mpz_powm(res, 3, (p-1)/4, p)". Value "3" because it is (smallest) quadratic non-residue mod p. The exponent can be rewritten as "(p-1)/4 = (2^31172163)^10223". So GMP library will have to do 31,172,163 squarings mod p, and then a fast exponentiation by less than 2^14 exponent.
+Rank 9 of [THE LARGEST KNOWN PRIMES](https://t5k.org/primes/lists/all.txt) list is 9,383,761 decimal digit number p=10223\*2^31172165+1. It is the largest known prime "=1 (mod 4)". For such primes there exists "sqrt(-1) (mod p)", which is what the PC will compute. It does so by computing "3^((p-1)/4) (mod p)", normally with just libgmpxx function call "mpz_powm(res, 3, (p-1)/4, p)". Value "3" because it is (smallest) quadratic non-residue mod p. The exponent can be rewritten as "(p-1)/4 = (2^31172163)^10223". So GMP library will have to do 31,172,163 squarings mod p, and then a fast exponentiation by less than 2^14 exponent. Doing 70+ days computation with a single GMP function call is a bit risky at least, as any interruption would require start from begin.
 
 ## Previous runtimes for up to 1,000,000-digit primes
 
