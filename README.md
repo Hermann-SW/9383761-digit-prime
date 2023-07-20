@@ -15,7 +15,7 @@ In Bios set "Restore on AC/Power Loss" to "Power ON".
 Have 90MB free disk space for TEST run (1.1h), 100GB free disk space for real run (75 days), both on 7600X CPU.
 Initially remove all "\*.job" files, and then reboot to start.
 
-See section [TEST](#test) below, and section [75 days sequential computation](#75-days-sequential-computation) — the run has started:  
+See section [TEST](#test) below, and section [75 days sequential computation](#75-days-sequential-computation) — it has started already:  
 ```
 $ stat 9383761-digit-prime/0.job | grep Birth
  Birth: 2023-07-20 17:33:45.443004722 +0200
