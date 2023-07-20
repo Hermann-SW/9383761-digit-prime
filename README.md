@@ -21,6 +21,7 @@ $ stat 9383761-digit-prime/0.job | grep Birth
  Birth: 2023-07-20 17:33:45.443004722 +0200
 $
 ```
+Finally section [Power consumption](#power-consumption) forecasts power consumption of 75 days computation as 150KWh, with more than half powered green from roof top solar power.
 
 ## Motivation
 
