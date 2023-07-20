@@ -98,8 +98,8 @@ Power factor 1.00, power consumption 77W and in total 0.23KWh consumed in 3h.
 
 80W is 2KWh/day or 150KWh for expected 75 days computation.
 
-We have solar power on roof top, and on good days (25KWh) as well as not so good days, 80W = 0.08KW are easily produced for more than 12 hours per day. So more than half of the computation is green:  
+We have solar power on roof top, and on good days (25KWh)  
 ![good.50%.jpg](good.75%25.jpg)  
+as well as on not so good days,  
 ![not_so_good.50%.jpg](not_so_good.75%25.jpg)  
-
-
+80W = 0.08KW are easily produced for more than 12 hours per day. So more than half of the computation is green.
