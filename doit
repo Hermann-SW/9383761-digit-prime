@@ -1,0 +1,19 @@
+#!/bin/bash
+
+cd `dirname $0`
+echo "3" > 0.job
+
+l=`ls *.job | sort -n | tail -1 | cut -f1 -d.`
+w=`wc --lines $l.job`
+if [[ ${w:0:1} -eq 0 ]]
+then
+  rm -f $l.job    # need new Birth time
+  let l=l-1
+fi
+
+./job $l
+
+for((i=0; i<=11122; ++i))
+do
+  stat --printf="%.2W %.2Y\n" $i.job
+done | sed "s/,/./g" > tstamps.txt

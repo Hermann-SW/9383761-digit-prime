@@ -1,0 +1,3 @@
+#!/bin/bash
+echo -e "\\\r 323.job\nx = %;\np = 1705*2^906110+1;\nx^2 % p == p-1" | \
+  gp -q | tail -1
