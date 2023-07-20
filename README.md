@@ -70,8 +70,11 @@ Instead the big computation is split into *loops* smaller jobs of *sqspl* squari
 
 This diagram shows runtimes [s] for the jobs 1..322 of determining *sqrt(-1) (mod p)* for 272770-digit prime p. This much smaller prime results in total runtime of just above 1 hour (1689839637.20 - 1689835811.49 = 1:03:45.71h), instead of 75 days for the real run:  
 ![job.runtimes.TEST.png](TEST/job.runtimes.TEST.png)  
-The runtime epoch timestamp from just before job *x* and after job *x* are here, for 0<=x<=323. 0.job contains just "3\n", 323.job contains *sqrt(-1) (mod p)*:  
-[TEST/tstamps.txt](https://github.com/Hermann-SW/9383761-digit-prime/blob/main/TEST/tstamps.txt)
+The runtime epoch timestamp from just before job *x* and after job *x* are here, for 0<=x<=323. 0.job contains just "3\n", 1.job contains *3^(2^2403) (mod p)* and 323.job contains *sqrt(-1) (mod p)*:  
+[TEST/tstamps.txt](https://github.com/Hermann-SW/9383761-digit-prime/blob/main/TEST/tstamps.txt)  
+[TEST/0.job](https://github.com/Hermann-SW/9383761-digit-prime/blob/main/TEST/0.job)  
+[TEST/1.job](https://github.com/Hermann-SW/9383761-digit-prime/blob/main/TEST/1.job)  
+[TEST/323.job](https://github.com/Hermann-SW/9383761-digit-prime/blob/main/TEST/323.job)  
 
 ## 75 days sequential computation
 
