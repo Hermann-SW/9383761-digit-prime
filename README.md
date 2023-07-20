@@ -1,3 +1,27 @@
+## Build and install
+
+```
+make [TEST]
+```
+
+Add crontab entry as root, with path adjusted to your repo location:  
+```
+$ sudo crontab -l | grep reboot
+@reboot /home/hermann/9383761-digit-prime/doit &
+$
+```
+
+In Bios set "Restore on AC/Power Loss" to "Power ON".
+Have 90MB free disk space for TEST run (1.1h), 100GB free disk space for real run (75 days), both on 7600X CPU.
+Initially remove all "\*.job" files, and then reboot to start.
+
+See section [TEST](#test) below, and section [75 days sequential computation](#75-days-sequential-computation) — the run has started:  
+```
+$ stat 9383761-digit-prime/0.job | grep Birth
+ Birth: 2023-07-20 17:33:45.443004722 +0200
+$
+```
+
 ## Motivation
 
 I was an ultramarathon runner [when I was younger](https://statistik.d-u-v.org/getresultperson.php?runner=2493&Language=EN), and this repo is all about making my new AMD Ryzen 5 7600X CPU PC do an ultramarathon (sequential) computation of 70+ days!  
@@ -40,3 +64,38 @@ Instead the big computation is split into *loops* smaller jobs of *sqspl* squari
 |in the dark|with flash|
 |-----------|----------|
 |![in the dark](20230717_214249.part.10%25.jpg)|![with flash](20230717_214236.part.10%25.jpg)|
+
+
+## TEST
+
+This diagram shows runtimes [s] for the jobs 1..322 of determining *sqrt(-1) (mod p)* for 272770-digit prime p. This much smaller prime results in total runtime of just above 1 hour (1689839637.20 - 1689835811.49 = 1:03:45.71h), instead of 75 days for the real run:  
+![job.runtimes.TEST.png](TEST/job.runtimes.TEST.png)  
+The runtime epoch timestamp from just before job *x* and after job *x* are here, for 0<=x<=323. 0.job contains just "3\n", 323.job contains *sqrt(-1) (mod p)*:  
+[TEST/tstamps.txt](https://github.com/Hermann-SW/9383761-digit-prime/blob/main/TEST/tstamps.txt)
+
+## 75 days sequential computation
+
+Has started:
+
+```
+$ stat 9383761-digit-prime/0.job | grep Birth
+ Birth: 2023-07-20 17:33:45.443004722 +0200
+$
+```
+
+Completed jobs 13..23 show 589s runtime per job.  
+With 11122 jobs that is 589\*11122/3600/24 = 75.8 days minimal runtime.
+
+## Power consumption
+
+Photos taken 3min/3h after power meter and PC got powered:  
+![20230720_173634.part.50%.jpg](20230720_173634.part.50%25.jpg) ![20230720_203332.part.66%.jpg](20230720_203332.part.66%25.jpg)  
+Power factor 1.00, power consumption 77W and in total 0.23KWh consumed in 3h.
+
+80W is 2KWh/day or 150KWh for expected 75 days computation.
+
+We have solar power on roof top, and on good as well as not so good days 80W = 0.08KW are easily produced for more than 12 hours per day. So more than half of the computation is green:  
+![good.50%.jpg](good.75%25.jpg)  
+![not_so_good.50%.jpg](not_so_good.75%25.jpg)  
+
+
