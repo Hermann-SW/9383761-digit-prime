@@ -90,6 +90,19 @@ $
 Completed jobs 13..23 show 589s runtime per job.  
 With 11122 jobs that is 589\*11122/3600/24 = 75.8 days minimal runtime.
 
+From 7600x PC ```journalctl``` command, first entry just a second before 0.job birth timestamp:  
+```
+-- Boot 51c723b1665044ddab991b1491b2b340 --
+Jul 20 17:33:44 7600x kernel: Linux version 5.19.0-46-generic (buildd@lcy02-amd64-025) (x86_64-linux-gnu-gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) ...
+```
+
+I had SSH key-based login configured, no need to login for uptime (load 1.00 is exactly as it should):
+```
+pi@pi400-64:~ $ ssh hermann@7600x uptime
+ 08:47:48 up 15:14,  0 users,  load average: 1.00, 1.00, 1.00
+pi@pi400-64:~ $ 
+```
+
 ## Power consumption
 
 Photos taken 3min/3h after power meter and PC got powered:  
