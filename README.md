@@ -87,8 +87,8 @@ $ stat 9383761-digit-prime/0.job | grep Birth
 $
 ```
 
-Completed jobs 13..23 show 589s runtime per job.  
-With 11122 jobs that is 589\*11122/3600/24 = 75.8 days minimal runtime.
+This diagram shows runtimes [s] for the jobs 1..153 of determining sqrt(-1) (mod p) for 9,383761-digit prime p, that completed in first 24h. Unlike the nearly same runtimes per job for TEST, here runtimes differ a bit: 573.5/585.4/590.9 seconds min/avg/max (-2.0%..+3.0%). Forecast for 11122 jobs is 585.4\*11122/3600/24 = 75.4 days minimal runtime:  
+![first_153_rounds.png](first_153_rounds.png)
 
 From 7600x PC ```journalctl``` command, first entry just a second before 0.job birth timestamp:  
 ```
@@ -99,17 +99,17 @@ Jul 20 17:33:44 7600x kernel: Linux version 5.19.0-46-generic (buildd@lcy02-amd6
 I had SSH key-based login configured, no need to login for uptime (load 1.00 is exactly as it should):
 ```
 pi@pi400-64:~ $ ssh hermann@7600x uptime
- 08:47:48 up 15:14,  0 users,  load average: 1.00, 1.00, 1.00
+ 20:06:09 up 1 day,  2:32,  0 users,  load average: 1.01, 1.02, 1.00
 pi@pi400-64:~ $ 
 ```
 
 ## Power consumption
 
-Photos taken 3min/3h after power meter and PC got powered:  
-![20230720_173634.part.50%.jpg](20230720_173634.part.50%25.jpg) ![20230720_203332.part.66%.jpg](20230720_203332.part.66%25.jpg)  
-Power factor 1.00, power consumption 77W and in total 0.23KWh consumed in 3h.
+Photos taken 3min/24h after power meter and PC got powered:  
+![20230720_173634.part.50%.jpg](20230720_173634.part.50%25.jpg) ![20230721_183332.part.50%.jpg](20230721_183332.part.50%25.jpg)  
+Power factor 1.00, power consumption 78W and in total 1.95KWh consumed in 24h.
 
-80W is 2KWh/day or 150KWh for expected 75 days computation.
+Total energy consumption will be 2KWh/day or 150KWh for expected 75 days computation.
 
 We have solar power on roof top, and on good days (25KWh)  
 ![good.50%.jpg](good.75%25.jpg)  
