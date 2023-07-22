@@ -113,7 +113,7 @@ I could have fixed then, but decided to do it now. I learned that better not cha
 
 New hotfix tool, new status.log, and the small change in job.cc and in doit can be seen in commit [f883474](https://github.com/Hermann-SW/9383761-digit-prime/commit/f883474da7ddf197daa8a02d493e39545e743263). While changing job.cc was fine without compiling, modified doit was stored in doit.new, to be handled by hotfix tool.
 
-After lot of testing on different computer to be sure that hotfix will work, I finally did it on 700X PC:  
+After lot of testing on different computer to be sure that hotfix will work, I finally did it on 7600X PC:  
 ```
 hermann@7600x:~/9383761-digit-prime$ sudo ./hotfix
 waiting for job 297 to complete
