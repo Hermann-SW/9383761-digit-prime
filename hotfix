@@ -1,0 +1,23 @@
+#!/bin/bash
+if [ "`whoami`" != "root" ]; then echo "has to be run as root"; exit; fi
+
+date +"%b %e %H:%M:%S `hostname` hotfix[$$]: started" >> status.log
+
+l=`ls *.job | sort -n | tail -1 | cut -f1 -d.`
+echo waiting for job $l to complete
+let l=l+1
+while [ ! -f $l.job ]; do sleep 1; done
+
+killall doit job
+
+if [ -f doit.new ]; then mv doit.new doit; fi
+
+make clean && make
+
+touch /tmp/startdoit
+service cron restart
+echo waiting for doit to restart
+while [ "`pstree | grep doit`" = "" ]; do sleep 1; done
+rm /tmp/startdoit
+
+date +"%b %e %H:%M:%S `hostname` hotfix[$$]: done" >> status.log

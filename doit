@@ -1,6 +1,8 @@
 #!/bin/bash
 
 cd `dirname $0`
+date +"%b %e %H:%M:%S `hostname` doit[$$]: started" >> status.log
+
 echo "3" > 0.job
 
 l=`ls *.job | sort -n | tail -1 | cut -f1 -d.`
@@ -17,3 +19,5 @@ for((i=0; i<=11122; ++i))
 do
   stat --printf="%.2W %.2Y\n" $i.job
 done | sed "s/,/./g" > tstamps.txt
+
+date +"%b %e %H:%M:%S `hostname` doit[$$]: done" >> status.log

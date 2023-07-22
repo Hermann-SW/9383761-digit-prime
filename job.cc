@@ -76,7 +76,7 @@ int main(int argc, char *argv[]) {
 
     create_birth(f, loops + 1);
 
-    c = mpz_class(1705);
+    c = mpz_class(fact);
     mpz_powm(a.get_mpz_t(), b.get_mpz_t(), c.get_mpz_t(), p.get_mpz_t());
 
     assert(a * a % p == p - 1);
