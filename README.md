@@ -4,12 +4,14 @@
 make [TEST]
 ```
 
-Add crontab entry as root, with path adjusted to your repo location:  
+Add these two root crontab entries, with path adjusted to your repo location:  
 ```
-$ sudo crontab -l | grep reboot
+$ sudo crontab -l | grep -v "^#"
 @reboot /home/hermann/9383761-digit-prime/doit &
-$
+* * * * * [ ! -f /tmp/startdoit ] || /home/hermann/9383761-digit-prime/doit &
+$ 
 ```
+See section [hotfix](#hotfix) on why the second entry is needed.
 
 In Bios set "Restore on AC/Power Loss" to "Power ON".
 Have 90MB free disk space for TEST run (1.1h), 100GB free disk space for real run (75 days), both on 7600X CPU.
@@ -101,6 +103,69 @@ I had SSH key-based login configured, no need to login for uptime (load 1.00 is 
 pi@pi400-64:~ $ ssh hermann@7600x uptime
  20:06:09 up 1 day,  2:32,  0 users,  load average: 1.01, 1.02, 1.00
 pi@pi400-64:~ $ 
+```
+
+## hotfix
+
+After more than 40 hours runtime, I spotted a small bug in [job.cc](https://github.com/Hermann-SW/9383761-digit-prime/blob/main/). The command ```c = mpz_class(1705);``` was a mistake, 1705 was factor ```fact``` from successful TEST run. In more than 70 days from now, when the 11121 loops are completed, the final exponentiation would be done with ```1705``` instead of the needed ```10223```, and the following ```assert(a * a % p == p - 1);``` will fail. 
+
+I could have fixed then, but decided to do it now. I learned that better not change a linux executable, and most likely better not change a bash script while running. I wanted to keep the uptime, so instead reboot a restart of cron was done by hotfix.
+
+New hotfix tool, new status.log, and the small change in job.cc in doit can be seen in ccommit [f883474](https://github.com/Hermann-SW/9383761-digit-prime/commit/f883474da7ddf197daa8a02d493e39545e743263). While changing job.cc was fine without compiling, modified doit was stored in doit.new, to be handled by hotfix tool.
+
+After lot of testing on different computer to be sure that hotfix will work, I finally did it on 700X PC:  
+```
+hermann@7600x:~/9383761-digit-prime$ sudo ./hotfix
+waiting for job 297 to complete
+rm -f job
+g++ job.cc -lgmp -lgmpxx -O3 -Wall -pedantic -Wextra -o job
+waiting for doit to restart
+hermann@7600x:~/9383761-digit-prime$ 
+```
+
+New status.log shows what happened reboot/hotfix wise:  
+```
+hermann@7600x:~/9383761-digit-prime$ cat status.log 
+0.log Birth: 2023-07-20 17:33:45.443004722 +0200
+
+Jul 22 17:43:47 7600x hotfix[628793]: started
+Jul 22 17:46:01 7600x doit[629454]: started
+Jul 22 17:46:01 7600x hotfix[628793]: done
+hermann@7600x:~/9383761-digit-prime$
+```
+
+uptime is bigger than 2 days, but doit and job processes were started newly 17:46  
+```
+hermann@7600x:~/9383761-digit-prime$ uptime
+ 17:51:02 up 2 days, 17 min,  1 user,  load average: 1.00, 1.00, 1.00
+hermann@7600x:~/9383761-digit-prime$ ps -ef | grep job
+root      629465  629454 99 17:46 ?        00:05:24 ./job 297
+hermann   630642  627106  0 17:51 pts/0    00:00:00 grep --color=auto job
+hermann@7600x:~/9383761-digit-prime$ ps -ef | grep doit
+root      629454       1  0 17:46 ?        00:00:00 /bin/bash /home/hermann/9383761-digit-prime/doit
+hermann   630710  627106  0 17:51 pts/0    00:00:00 grep --color=auto doit
+hermann@7600x:~/9383761-digit-prime$
+```
+
+After hotfix waited for the current job to complete, it did kill ```doit``` and ```job```. In case file doit.new is present, it gets moved to doit. Then job.cc gets compiled for new executable. Finally cron daemon is restarted. Since ```@reboot``` entry does not get executed (because no reboot happened), the 2nd root crontab line does the job to start doit:
+```
+$ sudo crontab -l | grep -v "^#"
+@reboot /home/hermann/9383761-digit-prime/doit &
+* * * * * [ ! -f /tmp/startdoit ] || /home/hermann/9383761-digit-prime/doit &
+$ 
+```
+After having waited for doit to start, /tmp/startdoit gets removed to not start doit again on next minute.
+
+And what is the result of all this hotfix stuff?  
+Less than 10 seconds of computation time is lost only!  
+Normally Modify timestamp of a job is equal to Birth timestamp of following one.  
+After hotfix both timestamps are less than 10 seconds apart:  
+```
+hermann@7600x:~/9383761-digit-prime$ stat 297.job | grep Modify
+Modify: 2023-07-22 17:45:52.104188350 +0200
+hermann@7600x:~/9383761-digit-prime$ stat 298.job | grep Birth
+ Birth: 2023-07-22 17:46:01.728445777 +0200
+hermann@7600x:~/9383761-digit-prime$ 
 ```
 
 ## Power consumption
