@@ -109,9 +109,9 @@ pi@pi400-64:~ $
 
 After more than 40 hours runtime, I spotted a small bug in [job.cc](https://github.com/Hermann-SW/9383761-digit-prime/blob/main/). The command ```c = mpz_class(1705);``` was a mistake, 1705 was factor ```fact``` from successful TEST run. In more than 70 days from now, when the 11121 loops are completed, the final exponentiation would be done with ```1705``` instead of the needed ```10223```, and the following ```assert(a * a % p == p - 1);``` will fail. 
 
-I could have fixed then, but decided to do it now. I learned that better not change a linux executable, and most likely better not change a bash script while running. I wanted to keep the uptime, so instead reboot a restart of cron was done by hotfix.
+I could have fixed then, but decided to do it now. I learned that better not change a linux executable while running, and most likely better not change a bash script while running. I wanted to keep the uptime, so instead reboot a restart of cron was done by hotfix tool.
 
-New hotfix tool, new status.log, and the small change in job.cc in doit can be seen in ccommit [f883474](https://github.com/Hermann-SW/9383761-digit-prime/commit/f883474da7ddf197daa8a02d493e39545e743263). While changing job.cc was fine without compiling, modified doit was stored in doit.new, to be handled by hotfix tool.
+New hotfix tool, new status.log, and the small change in job.cc and in doit can be seen in commit [f883474](https://github.com/Hermann-SW/9383761-digit-prime/commit/f883474da7ddf197daa8a02d493e39545e743263). While changing job.cc was fine without compiling, modified doit was stored in doit.new, to be handled by hotfix tool.
 
 After lot of testing on different computer to be sure that hotfix will work, I finally did it on 700X PC:  
 ```
