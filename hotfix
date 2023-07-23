@@ -15,7 +15,6 @@ if [ -f doit.new ]; then mv doit.new doit; fi
 make clean && make
 
 touch /tmp/startdoit
-service cron restart
 echo waiting for doit to restart
 while [ "`pstree | grep doit`" = "" ]; do sleep 1; done
 rm /tmp/startdoit
