@@ -147,7 +147,7 @@ hermann   630710  627106  0 17:51 pts/0    00:00:00 grep --color=auto doit
 hermann@7600x:~/9383761-digit-prime$
 ```
 
-After hotfix waited for the current job to complete, it did kill ```doit``` and ```job```. In case file doit.new is present, it gets moved to doit. Then job.cc gets compiled for new executable. Finally cron daemon is restarted. Since ```@reboot``` entry does not get executed (because no reboot happened), the 2nd root crontab line does the job to start doit:
+After hotfix waited for the current job to complete, it did kill ```doit``` and ```job```. In case file doit.new is present, it gets moved to doit. Then job.cc gets compiled for new executable.,Then /tmp/startdoit gets touch, and the 2nd root crontab line does the job to start doit from cron:
 ```
 $ sudo crontab -l | grep -v "^#"
 @reboot /home/hermann/9383761-digit-prime/doit &
