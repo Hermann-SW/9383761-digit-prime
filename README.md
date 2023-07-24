@@ -170,7 +170,7 @@ hermann@7600x:~/9383761-digit-prime$
 
 ## Power consumption
 
-Photos taken 3min/24h after power meter and PC got powered:  
+Photos taken 3min/24h after electricity meter and PC got powered:  
 ![20230720_173634.part.50%.jpg](20230720_173634.part.50%25.jpg) ![20230721_183332.part.50%.jpg](20230721_183332.part.50%25.jpg)  
 Power factor 1.00, power consumption 78W and in total 1.95KWh consumed in 24h.
 
