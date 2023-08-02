@@ -1,3 +1,43 @@
+## Fast "sqrt(-1) (mod p)" for 9,383,761-digit prime p =1 (mod 4)
+
+I will leave below sections for history, but I stopped the long 75.4 days expected run on Sunday after 9d 20.9h:  
+```
+hermann@7600x:~/9383761-digit-prime$ uptime
+ 14:30:02 up 9 days, 20:56,  1 user,  load average: 0.85, 0.97, 0.99
+hermann@7600x:~/9383761-digit-prime$
+```
+
+Reason was that I learned about llr tool ([binaries and source](http://jpenne.free.fr/index2.html)) based on gwnum library, which can speedup computation massively using AVX512 instructions and parallelism. While repeated squarings (mod p) cannot be parallelized, a single square or square+mult (mod p) can be parallelized using FFTs. And 31,172,177 such operations had to be done ...
+
+You find details on the determination in 13.2h plus 10s post processing in this posting:  
+https://mersenneforum.org/showthread.php?p=635482#post635482  
+That is 137× faster than 75.4 days!  
+
+The determined "sqrt(-1) (mod p)" is defined as constant "sqrtm1" in this PARI/GP script:  
+https://github.com/Hermann-SW/RSA_numbers_factored/blob/main/pari/sqrtm1.9383761_digit.largest_known_1mod4_prime.gp
+
+And what I wanted to compute, the unique sum of squares for the 9,383,761-digit prime was done in just 2.9s given sqrtm1(!). Also computation of sqrtm1 given x and y can be done in 4.2s for that huge prime number:  
+```
+hermann@7600x:~/RSA_numbers_factored/pari$ gp -q
+? \r sqrtm1.9383761_digit.largest_known_1mod4_prime
+9383761-digit prime p (31172179 bits)
+[M,V] = halfgcd(sqrtm1, p)
+  ***   last result computed in 2,854 ms.
+[x,y] = [V[2], M[2,1]]
+  ***   last result computed in 1 ms.
+sqrtm1 = lift(Mod(x/y, p))
+  ***   last result computed in 5,929 ms.
+sqrtm1 = lift(x*Mod(1/y, p))
+  ***   last result computed in 4,531 ms.
+sqrtm1 = lift(Mod(x, p)/y)
+  ***   last result computed in 4,203 ms.
+done, all asserts OK
+?
+```
+
+Total power consumption at just below 80W in 9d 20.9h was 18.47KWh, or 1.87KWh/day (with >50% green power from roof top solar collectors).  
+![20230730_143132.part.50%.jpg](20230730_143132.part.50%25.jpg)
+
 ## Build and install
 
 ```
