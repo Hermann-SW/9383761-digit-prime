@@ -35,6 +35,22 @@ done, all asserts OK
 ?
 ```
 
+Same computations can be done with libgmpxx and libpari in C++. Same time for computing sqrtm1 from unique sum of squares p=x^2+y^2, a bit slower for the other direction [most likely due to conversion overhead calling libpari function halfgcdii())]:  
+https://github.com/Hermann-SW/RSA_numbers_factored/blob/main/c%2B%2B/sqrtm1.9383761_digit.largest_known_1mod4_prime.cc
+```
+$ f=sqrtm1.9383761_digit.largest_known_1mod4_prime
+$ g++ $f.cc -lgmp -lgmpxx -O3 -o $f -lpari -DPARI
+$ ./$f
+a = y^(-1) (mod p) [powm]; a *= x; a %= p
+4.22922s
+[M,V] = halfgcdii(sqrtm1, p)
+3.71779s
+[x,y] = [V[2], M[2,1]]
+1e-06s
+done
+$
+```
+
 Total power consumption at just below 80W in 9d 20.9h was 18.47KWh, or 1.87KWh/day (with >50% green power from roof top solar collectors).  
 ![20230730_143132.part.50%.jpg](20230730_143132.part.50%25.jpg)
 
