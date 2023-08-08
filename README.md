@@ -13,6 +13,9 @@ You find details on the determination in 13.2h plus 10s post processing in this 
 https://mersenneforum.org/showthread.php?p=635482#post635482  
 That is 137× faster than 75.4 days!  
 
+LLR tools above version 3.8.21 do not work on AMD64 CPUs. I patched 3.8.21 LLR to access *sqrt(-1) (mod p)* at end of computation. And the 7600X CPU with ```-t6``` LLR option did complete in only 10:45:01h(!). That is 168× faster than 75.4 days, and apples to apples comparison on same hardware; details here:  
+https://github.com/Hermann-SW/RSA_numbers_factored/tree/main/llr#readme
+
 The determined "sqrt(-1) (mod p)" is defined as constant "sqrtm1" in this PARI/GP script:  
 https://github.com/Hermann-SW/RSA_numbers_factored/blob/main/pari/sqrtm1.9383761_digit.largest_known_1mod4_prime.gp
 
