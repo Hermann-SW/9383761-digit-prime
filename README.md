@@ -21,7 +21,10 @@ In July 2023 a larger =1 (mod 4) prime was proven.
 The determined "sqrt(-1) (mod p)" is defined as constant "sqrtm1" in this PARI/GP script:  
 https://github.com/Hermann-SW/RSA_numbers_factored/blob/main/pari/sqrtm1.9383761_digit.second_largest_known_1mod4_prime.gp
 
-And what I wanted to compute, the unique sum of squares for the 9,383,761-digit prime was done in just 2.9s given sqrtm1(!). Also computation of sqrtm1 given x and y can be done in 4.2s for that huge prime number:  
+And what I wanted to compute, the unique sum of squares p=x^2+y^2 for the 9,383,761-digit prime p was done in just 2.9s given sqrtm1(!).
+x and y constants can be found in [this C++ script](https://github.com/Hermann-SW/RSA_numbers_factored/blob/main/c%2B%2B/sqrtm1.9383761_digit.largest_known_1mod4_prime.cc).  
+
+Also computation of sqrtm1 given x and y can be done in 4.2s for that huge prime number:  
 ```
 hermann@7600x:~/RSA_numbers_factored/pari$ gp -q
 ? \r sqrtm1.9383761_digit.second_largest_known_1mod4_prime
