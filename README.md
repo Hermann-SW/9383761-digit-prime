@@ -16,13 +16,15 @@ That is 137× faster than 75.4 days!
 LLR tools above version 3.8.21 do not work on AMD64 CPUs. I patched 3.8.21 LLR to access *sqrt(-1) (mod p)* at end of computation. And the 7600X CPU with ```-t6``` LLR option did complete in only 10:45:01h(!). That is 168× faster than 75.4 days, and apples to apples comparison on same hardware; details here:  
 https://github.com/Hermann-SW/RSA_numbers_factored/tree/main/llr#readme
 
+When I started this project, 9,383,761-digit prime was largest known prime =1 (mod 4).  
+In July 2023 a larger =1 (mod 4) prime was proven.  
 The determined "sqrt(-1) (mod p)" is defined as constant "sqrtm1" in this PARI/GP script:  
-https://github.com/Hermann-SW/RSA_numbers_factored/blob/main/pari/sqrtm1.9383761_digit.largest_known_1mod4_prime.gp
+https://github.com/Hermann-SW/RSA_numbers_factored/blob/main/pari/sqrtm1.9383761_digit.second_largest_known_1mod4_prime.gp
 
 And what I wanted to compute, the unique sum of squares for the 9,383,761-digit prime was done in just 2.9s given sqrtm1(!). Also computation of sqrtm1 given x and y can be done in 4.2s for that huge prime number:  
 ```
 hermann@7600x:~/RSA_numbers_factored/pari$ gp -q
-? \r sqrtm1.9383761_digit.largest_known_1mod4_prime
+? \r sqrtm1.9383761_digit.second_largest_known_1mod4_prime
 9383761-digit prime p (31172179 bits)
 [M,V] = halfgcd(sqrtm1, p)
   ***   last result computed in 2,854 ms.
