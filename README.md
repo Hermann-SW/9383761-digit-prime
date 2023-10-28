@@ -16,7 +16,35 @@ That is 137× faster than 75.4 days!
 LLR tools above version 3.8.21 do not work on AMD64 CPUs. I patched 3.8.21 LLR to access *sqrt(-1) (mod p)* at end of computation. And the 7600X CPU with ```-t6``` LLR option did complete in only 10:45:01h(!). That is 168× faster than 75.4 days, and apples to apples comparison on same hardware; details here:  
 https://github.com/Hermann-SW/RSA_numbers_factored/tree/main/llr#readme
 
+
 When I started this project, 9,383,761-digit prime was largest known prime =1 (mod 4). On 7/25/2023 a larger 11,887,192-digit prime =1 (mod 4) was proven and published, see [this repo](https://github.com/Hermann-SW/11887192-digit-prime#motivation) on 6.7days computation for that prime.
+
+
+The 9,383,761-digit prime is largest of 6 Colbert numbers:  
+https://oeis.org/A258074
+
+I created new repo for those, containing entries [k,n,s,x,y] with p=k*2^n+1, s^2%p==p-1 and p==x^2+y^2:  
+https://github.com/Hermann-SW/Colbert_numbers
+
+
+The determined "sqrt(-1) (mod p)" is defined as constant "sqrtm1" in this PARI/GP script:  
+https://github.com/Hermann-SW/RSA_numbers_factored/blob/main/pari/sqrtm1.9383761_digit.second_largest_known_1mod4_prime.gp
+
+And what I wanted to compute, the unique sum of squares p=x^2+y^2 for the 9,383,761-digit prime p was done in just 2.9s given sqrtm1(!).
+x and y constants can be found in [this C++ script](https://github.com/Hermann-SW/RSA_numbers_factored/blob/main/c%2B%2B/sqrtm1.9383761_digit.second_largest_known_1mod4_prime.cc).  
+
+Also computation of sqrtm1 given x and y can be done in 4.2s for that huge prime number:  
+```
+hermann@7600x:~/RSA_numbers_factored/pari$ gp -q
+? \r sqrtm1.9383761_digit.second_largest_known_1mod4_prime
+9383761-digit prime p (31172179 bits)
+[M,V] = halfgcd(sqrtm1, p)
+  ***   last result computed in 2,854 ms.
+[x,y] = [V[2], M[2,1]]
+https://oeis.org/A258074
+https://github.com/Hermann-SW/Colbert_numbers
+contains entries [k,n,s,x,y] for the 6 Colbert numbers, with p=k*2^n+1, s^2%p==p-1 and p==x^2+y^2.
+
 
 The determined "sqrt(-1) (mod p)" is defined as constant "sqrtm1" in this PARI/GP script:  
 https://github.com/Hermann-SW/RSA_numbers_factored/blob/main/pari/sqrtm1.9383761_digit.second_largest_known_1mod4_prime.gp
