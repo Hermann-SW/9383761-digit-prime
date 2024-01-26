@@ -17,7 +17,7 @@ LLR tools above version 3.8.21 do not work on AMD64 CPUs. I patched 3.8.21 LLR t
 https://github.com/Hermann-SW/RSA_numbers_factored/tree/main/llr#readme
 
 \<NEW date="1/26/2024">  
-I did factor this prime on AMD 7950X CPU in only 8:24:37h(!), details here:  
+I did factor this prime on AMD 7950X CPU in only 8:24:37h(!), with <kbd>-t6</kbd> LLR option as well, details here:  
 https://mersenneforum.org/showthread.php?p=648945#post648945  
 \</NEW>
 
