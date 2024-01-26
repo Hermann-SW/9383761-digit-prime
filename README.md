@@ -16,6 +16,10 @@ That is 137× faster than 75.4 days!
 LLR tools above version 3.8.21 do not work on AMD64 CPUs. I patched 3.8.21 LLR to access *sqrt(-1) (mod p)* at end of computation. And the 7600X CPU with ```-t6``` LLR option did complete in only 10:45:01h(!). That is 168× faster than 75.4 days, and apples to apples comparison on same hardware; details here:  
 https://github.com/Hermann-SW/RSA_numbers_factored/tree/main/llr#readme
 
+\<NEW date="1/26/2024">  
+I did factor this prime on AMD 7950X CPU in only 8:24:37h(!), details here:  
+https://mersenneforum.org/showthread.php?p=648945#post648945  
+\</NEW>
 
 When I started this project, 9,383,761-digit prime was largest known prime =1 (mod 4). On 7/25/2023 a larger 11,887,192-digit prime =1 (mod 4) was proven and published, see [this repo](https://github.com/Hermann-SW/11887192-digit-prime#motivation) on 6.7days computation for that prime.
 
