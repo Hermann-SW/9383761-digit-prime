@@ -19,6 +19,8 @@ https://github.com/Hermann-SW/RSA_numbers_factored/tree/main/llr#readme
 \<NEW date="1/26/2024">  
 I determined *sqrt(-1) (mod p)* for this prime on AMD 7950X CPU in only 8:24:37h(!), also with <kbd>-t6</kbd> LLR option:  
 https://mersenneforum.org/showthread.php?p=648945#post648945  
+It turned out that <kbd>-t16</kbd> is optimal (number of hardware threads in chiplet0), computation in only 6:33:01h(!):  
+https://mersenneforum.org/showthread.php?p=648945#post648985  
 \</NEW>
 
 When I started this project, 9,383,761-digit prime was largest known prime =1 (mod 4). On 7/25/2023 a larger 11,887,192-digit prime =1 (mod 4) was proven and published, see [this repo](https://github.com/Hermann-SW/11887192-digit-prime#motivation) on 6.7days computation for that prime.
